@@ -1,15 +1,5 @@
 document.addEventListener('DOMContentLoaded', function () {
-    var xmlhttp = new XMLHttpRequest();
-    xmlhttp.open("GET", "https://nondanee.gitlab.io/jike-daily-card-api/data.json", false);
-    xmlhttp.send();
-    var obj = JSON.parse(xmlhttp.responseText);
-    var card = obj.data.cards[0];
-    document.getElementById("content").innerHTML = card.fortune;
-    document.getElementById("contentA").innerHTML = card.featuredContent.text;
-    document.getElementById("footer").innerHTML = "via " + card.featuredContent.author;
-    var date = card.date;
-    console.info(date);
-    var today = new Date(date);
+    var today = new Date();
     var myday = today.getDay();//注:0-6对应为星期日到星期六
     var week;
     switch (myday) {
@@ -79,6 +69,16 @@ document.addEventListener('DOMContentLoaded', function () {
         default:
             monthCn = "系统错误！"
     }
-    document.getElementById("header").innerHTML = today.getFullYear() + " " + monthCn + "月" + " " + week;
-    document.getElementById("body").innerHTML = today.getDate();
+    $("#header").html(today.getFullYear() + " " + monthCn + "月" + " " + week);
+    $("#body").html(today.getDate());
+
+    $.ajax({
+        url: "https://nondanee.gitlab.io/jike-daily-card-api/data.json",
+        success: function (result) {
+            var card = result.data.cards[0];
+            $("#content").html(card.fortune);
+            $("#contentA").html(card.featuredContent.text);
+            $("#footer").html("via " + card.featuredContent.author);
+        }
+    });
 });
