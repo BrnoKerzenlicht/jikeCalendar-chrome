@@ -73,12 +73,11 @@ document.addEventListener('DOMContentLoaded', function () {
     $("#body").html(today.getDate());
 
     $.ajax({
-        url: "https://nondanee.gitlab.io/jike-daily-card-api/data.json",
+        url: "https://v1.hitokoto.cn",
         success: function (result) {
-            var card = result.data.cards[0];
-            $("#content").html(card.fortune);
-            $("#contentA").html(card.featuredContent.text);
-            $("#footer").html("via " + card.featuredContent.author);
+            $("#content").html("宜吃糖");
+            $("#contentA").html(result.hitokoto);
+            $("#footer").html("via " + result.creator + "from " + result.from);
         }
     });
 });
