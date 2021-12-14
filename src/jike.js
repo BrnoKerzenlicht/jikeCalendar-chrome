@@ -80,4 +80,11 @@ document.addEventListener('DOMContentLoaded', function () {
             $("#footer").html("via " + result.creator + " from " + result.from);
         }
     });
+
+    $.ajax({
+        url: "https://api.juejin.cn/growth_api/v1/get_coder_calendar",
+        success: function (result) {
+            $("#content").html(result.data.should_or_not);
+        }
+    });
 });
