@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', function () {
         success: function (result) {
             $("#content").html("宜健身");
             $("#contentA").html(result.hitokoto);
-            $("#footer").html("via " + result.creator + "from " + result.from);
+            $("#footer").html("via " + result.creator + " from " + result.from);
         }
     });
 });
