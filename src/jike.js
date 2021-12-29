@@ -75,7 +75,6 @@ document.addEventListener('DOMContentLoaded', function () {
     $.ajax({
         url: "https://v1.hitokoto.cn",
         success: function (result) {
-            $("#content").html("宜健身");
             $("#contentA").html(result.hitokoto);
             $("#footer").html("via " + result.creator + " from " + result.from);
         }
